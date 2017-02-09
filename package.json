@@ -1,0 +1,28 @@
+{
+  "name": "node-rest-client-promise",
+  "version": "1.0.0",
+  "description": "node-rest-client, but with promises",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dodevops/node-rest-client-promise.git"
+  },
+  "keywords": [
+    "rest",
+    "node-rest-client",
+    "promises"
+  ],
+  "author": "Dennis Ploeger <dennis.ploeger@kps.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dodevops/node-rest-client-promise/issues"
+  },
+  "homepage": "https://github.com/dodevops/node-rest-client-promise#readme",
+  "dependencies": {
+    "bluebird": "^3.4.7",
+    "node-rest-client": "^2.5.0"
+  }
+}
