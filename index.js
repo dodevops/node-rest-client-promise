@@ -1,5 +1,5 @@
 var Promise = require("bluebird");
-var methodNamesToPromisify = "get post put del patch".split(" ");
+var methodNamesToPromisify = "get post put delete patch".split(" ");
 var nodeRestClient = require('node-rest-client');
 
 /**

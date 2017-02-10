@@ -1,6 +1,6 @@
 {
   "name": "node-rest-client-promise",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "node-rest-client, but with promises",
   "main": "index.js",
   "scripts": {
@@ -27,5 +27,12 @@
   "dependencies": {
     "bluebird": "^3.4.7",
     "node-rest-client": "^2.5.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "grunt": "^1.0.1",
+    "grunt-mocha-test": "^0.13.2",
+    "gruntify-eslint": "^3.1.0",
+    "mocha": "^3.2.0"
   }
 }
