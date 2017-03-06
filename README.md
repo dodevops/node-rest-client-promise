@@ -1,6 +1,6 @@
 # node-rest-client-promise
 
-[![Travis](https://img.shields.io/travis/dodevops/node-rest-client-promise)](https://travis-ci.org/dodevops/node-rest-client-promise)
+[![Travis](https://img.shields.io/travis/dodevops/node-rest-client-promise.svg)](https://travis-ci.org/dodevops/node-rest-client-promise)
 
 node-rest-client, but with promises
 
