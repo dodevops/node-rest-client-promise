@@ -70,4 +70,4 @@ var client = function (options) {
     return promisifiedClient;
 }
 
-exports.client = client;
+exports.Client = client;
