@@ -7,7 +7,7 @@ var should = chai.should();
 describe('node-rest-client-promise', function () {
     describe('client', function () {
         it('should generate the promisified methods', function () {
-            var client = nodeRestPromised.client({});
+            var client = nodeRestPromised.Client({});
 
             client.should.hasOwnProperty(
                 'getPromise',
@@ -38,7 +38,7 @@ describe('node-rest-client-promise', function () {
 
         it('should provide working promises', function (done) {
 
-            var client = nodeRestPromised.client({});
+            var client = nodeRestPromised.Client({});
 
             client.getPromise(
                 'https://www.google.de'
