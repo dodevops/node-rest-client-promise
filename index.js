@@ -1,5 +1,5 @@
-var Promise = require("bluebird");
-var methodNamesToPromisify = "get post put delete patch".split(" ");
+var Promise = require('bluebird');
+var methodNamesToPromisify = 'get post put delete patch'.split(' ');
 var nodeRestClient = require('node-rest-client');
 
 /**
@@ -36,17 +36,40 @@ function EventEmitterPromisifier(originalMethod) {
             // listen to specific events leading to rejects
 
             emitter
-                .on("error", function (err) {
+                .on('error', function (err) {
                     reject(err);
                 })
-                .on("requestTimeout", function () {
+                .on('requestTimeout', function () {
                     reject(new Promise.TimeoutError());
                 })
-                .on("responseTimeout", function () {
+                .on('responseTimeout', function () {
                     reject(new Promise.TimeoutError());
                 });
         });
     };
+};
+
+var registerPromiseMethod = function (name, url, method) {
+    // create method in method registry with preconfigured REST invocation
+    // method
+
+    var self = this;
+
+    var PromisifiedMethod = function (url, method) {
+        var httpMethod = self[method.toLowerCase()];
+
+        return function (args) {
+            var completeURL = url;
+            if (!args) {
+                args = {};
+            }
+
+            // eslint-disable-next-line new-cap
+            return EventEmitterPromisifier(httpMethod)(completeURL, args);
+        };
+    };
+
+    this.methods[name] = new PromisifiedMethod(url, method);
 };
 
 /**
@@ -67,7 +90,11 @@ var client = function (options) {
         promisifier: EventEmitterPromisifier,
         suffix: 'Promise'
     });
+
+    promisifiedClient.registerMethodPromise =
+        registerPromiseMethod.bind(promisifiedClient);
+
     return promisifiedClient;
-}
+};
 
 exports.Client = client;

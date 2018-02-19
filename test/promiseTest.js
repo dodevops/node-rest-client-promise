@@ -1,12 +1,14 @@
-var chai = require("chai");
+var chai = require('chai');
+var Promise = require('bluebird');
 var nodeRestPromised = require('../index');
-var it = require("mocha").it;
-var describe = require("mocha").describe;
+var it = require('mocha').it;
+var describe = require('mocha').describe;
 
 var should = chai.should();
 describe('node-rest-client-promise', function () {
     describe('client', function () {
         it('should generate the promisified methods', function () {
+            // eslint-disable-next-line new-cap
             var client = nodeRestPromised.Client({});
 
             client.should.hasOwnProperty(
@@ -36,21 +38,14 @@ describe('node-rest-client-promise', function () {
 
         });
 
-        it('should provide working promises', function (done) {
+        it('should provide working promises', function () {
 
+            // eslint-disable-next-line new-cap
             var client = nodeRestPromised.Client({});
 
-            client.getPromise(
+            return client.getPromise(
                 'https://www.google.de'
             )
-                .catch(
-                    function (error) {
-                        should.not.exist(
-                            error,
-                            'Got error: ' + error.message
-                        );
-                    }
-                )
                 .then(
                     function (result) {
                         result.response.statusCode
@@ -63,6 +58,26 @@ describe('node-rest-client-promise', function () {
 
             done();
 
+        });
+    });
+    describe('client#registerMethod', function() {
+        it('should add a promise', function () {
+            // eslint-disable-next-line new-cap
+            var client = nodeRestPromised.Client({});
+
+            client.registerMethodPromise(
+                'testMethod', 'https://somedomain', 'GET'
+            );
+
+            return client.methods.testMethod()
+                .catch(
+                    function (e) {
+                        return e.code === 'ENOTFOUND';
+                    },
+                    function () {
+                        return Promise.resolve();
+                    }
+                );
         });
     });
 });
