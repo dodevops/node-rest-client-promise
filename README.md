@@ -38,3 +38,7 @@ arguments of e.g. `client.get()`.
 
 For details about node-rest-client, please see the
 [original documentation](https://www.npmjs.com/package/node-rest-client)
+
+## Usage of registerMethod
+
+Node Rest Client's method "registerMethod" is available as registerMethodPromise from Version 3.1.0 on.
