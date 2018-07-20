@@ -39,7 +39,8 @@ function EventEmitterPromisifier(originalMethod) {
                 .on('error', function (err) {
                     reject(err);
                 })
-                .on('requestTimeout', function () {
+                .on('requestTimeout', function (req) {
+					req.abort();
                     reject(new Promise.TimeoutError());
                 })
                 .on('responseTimeout', function () {
